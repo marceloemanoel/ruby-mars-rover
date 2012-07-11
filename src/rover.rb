@@ -3,17 +3,18 @@ class Rover
   
   def initialize(direction, position=[0,0])
     @direction = direction
+    @position = position
   end
   
   def turn_left
-    @direction = :west
+    @direction = @direction.turn_left
   end
   
   def turn_right
-    @direction = :east
+    @direction = @direction.turn_right
   end
   
   def move
-    @position = [0,1]
+    @position = @direction.move(@position)
   end  
 end            
