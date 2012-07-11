@@ -1,20 +1,26 @@
 class Rover
-  attr_accessor :direction, :position
   
-  def initialize(direction, position=[0,0])
-    @direction = direction
-    @position = position
+  def initialize(navigator)
+    @navigator = navigator
   end
   
   def turn_left
-    @direction = @direction.turn_left
+    @navigator.turn_left
   end
   
   def turn_right
-    @direction = @direction.turn_right
+    @navigator.turn_right
   end
   
   def move
-    @position = @direction.move(@position)
+    @navigator.move
   end  
+
+  def direction
+    @navigator.direction
+  end
+
+  def position
+    @navigator.position
+  end
 end            

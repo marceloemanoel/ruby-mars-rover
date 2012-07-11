@@ -1,20 +1,21 @@
 require_relative "../src/rover"
-require_relative "../src/directions"
+require_relative "../src/navigator"
 
 describe Rover do
   context "is standing at position (0,0) facing NORTH" do
     before :each do
-      @rover = Rover.new(Directions::NORTH)
+      navigator = Navigator.new(Navigator::NORTH)
+      @rover = Rover.new(navigator)
     end
     
     it "turn left and should be facing WEST" do
       @rover.turn_left
-      @rover.direction.should == Directions::WEST
+      @rover.direction.should == Navigator::WEST
     end
     
     it "turn right and should be facing EAST" do
       @rover.turn_right
-      @rover.direction.should == Directions::EAST
+      @rover.direction.should == Navigator::EAST
     end
     
     it "move and should be standing at position (0, 1)" do
@@ -25,17 +26,17 @@ describe Rover do
   
   context "is standing at position (0, 0) facing WEST" do 
     before :each do
-      @rover = Rover.new(Directions::WEST)
+      @rover = Rover.new(Navigator.new(Navigator::WEST))
     end
       
     it "turn left and should be facing SOUTH" do
       @rover.turn_left
-      @rover.direction.should == Directions::SOUTH
+      @rover.direction.should == Navigator::SOUTH
     end
     
     it "turn right and should be facing NORTH" do
       @rover.turn_right
-      @rover.direction.should == Directions::NORTH
+      @rover.direction.should == Navigator::NORTH
     end
 
     it "move and should be standing at position (-1, 0)" do
@@ -47,17 +48,17 @@ describe Rover do
   
   context "is standing at position (0,0) facing SOUTH" do
     before :each  do
-      @rover = Rover.new(Directions::SOUTH)
+      @rover = Rover.new(Navigator.new(Navigator::SOUTH))
     end
     
     it "turn left and should be facing WEST" do
       @rover.turn_left
-      @rover.direction.should == Directions::WEST
+      @rover.direction.should == Navigator::WEST
     end
     
     it "turn right and should be facing EAST" do
       @rover.turn_right
-      @rover.direction.should == Directions::EAST
+      @rover.direction.should == Navigator::EAST
     end
     
     it "move and should be standing at position (0, -1)" do

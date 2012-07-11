@@ -2,11 +2,11 @@ module Directions
   
   class North
     def turn_left
-      Directions::WEST
+      Navigator::WEST
     end
     
     def turn_right
-      Directions::EAST
+      Navigator::EAST
     end
     
     def move(currentPosition)
@@ -19,11 +19,11 @@ module Directions
   
   class West
     def turn_left
-      Directions::SOUTH
+      Navigator::SOUTH
     end
   
     def turn_right
-      Directions::NORTH
+      Navigator::NORTH
     end
  
     def move(currentPosition)
@@ -36,11 +36,11 @@ module Directions
 
   class South
     def turn_left
-      Directions::WEST
+      Navigator::WEST
     end
     
     def turn_right
-      Directions::EAST
+      Navigator::EAST
     end
     
     def move(currentPosition)
@@ -54,9 +54,4 @@ module Directions
   class East
   end  
   
-  
-  NORTH = North.new
-  WEST = West.new
-  EAST = East.new
-  SOUTH = South.new
 end
