@@ -1,69 +1,35 @@
-require_relative "../src/rover"
-require_relative "../src/navigator"
+require_relative "../src/rover" 
+require_relative "../src/navigator"  
+require_relative "../src/communicator"
 
 describe Rover do
-  context "is standing at position (0,0) facing NORTH" do
-    before :each do
-      navigator = Navigator.new(Navigator::NORTH)
-      @rover = Rover.new(navigator)
-    end
+  context "at position (1, 2) facing NORTH" do
     
-    it "turn left and should be facing WEST" do
-      @rover.turn_left
-      @rover.direction.should == Navigator::WEST
-    end
-    
-    it "turn right and should be facing EAST" do
-      @rover.turn_right
-      @rover.direction.should == Navigator::EAST
-    end
-    
-    it "move and should be standing at position (0, 1)" do
-      @rover.move
-      @rover.position.should == [0, 1]
-    end
-  end
-  
-  context "is standing at position (0, 0) facing WEST" do 
-    before :each do
-      @rover = Rover.new(Navigator.new(Navigator::WEST))
-    end
+    it "receive the command LMLMLMLMM and stands at location (1, 3) facing NORTH" do
+      navigator = Navigator.new(Navigator::NORTH, [1, 2])
+      rover = Rover.new(navigator)
+      communicator = Communicator.new(rover) 
       
-    it "turn left and should be facing SOUTH" do
-      @rover.turn_left
-      @rover.direction.should == Navigator::SOUTH
+      communicator.receive("LMLMLMLMM")
+      
+      rover.direction.should == Navigator::NORTH
+      rover.position.should == [1, 3]
     end
     
-    it "turn right and should be facing NORTH" do
-      @rover.turn_right
-      @rover.direction.should == Navigator::NORTH
-    end
-
-    it "move and should be standing at position (-1, 0)" do
-      @rover.move
-      @rover.position.should == [-1, 0]                  
-    end
-
   end
   
-  context "is standing at position (0,0) facing SOUTH" do
-    before :each  do
-      @rover = Rover.new(Navigator.new(Navigator::SOUTH))
+  context "at position (3, 3) facing EAST" do
+    
+    it "receive the command MMRMMRMRRM and stands at location (5, 1) facing EAST" do
+      navigator = Navigator.new(Navigator::EAST, [3, 3])
+      rover = Rover.new(navigator)
+      communicator = Communicator.new(rover)
+      
+      communicator.receive("MMRMMRMRRM")
+      
+      rover.direction.should == Navigator::EAST
+      rover.position.should == [5, 1]
     end
     
-    it "turn left and should be facing WEST" do
-      @rover.turn_left
-      @rover.direction.should == Navigator::WEST
-    end
-    
-    it "turn right and should be facing EAST" do
-      @rover.turn_right
-      @rover.direction.should == Navigator::EAST
-    end
-    
-    it "move and should be standing at position (0, -1)" do
-      @rover.move
-      @rover.position.should == [0, -1]
-    end 
   end
 end

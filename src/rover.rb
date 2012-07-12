@@ -1,7 +1,7 @@
 class Rover
   
   def initialize(navigator)
-    @navigator = navigator
+    @navigator = navigator 
   end
   
   def turn_left
@@ -22,5 +22,8 @@ class Rover
 
   def position
     @navigator.position
+  end
+  
+  def receive(command)
   end
 end            
