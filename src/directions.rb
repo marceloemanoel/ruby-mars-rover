@@ -1,54 +1,54 @@
-module Directions  
+module Directions
   def self.from_s(direction)
      case
        when direction == 'N'
-         Navigator::NORTH
+         NORTH
        when direction == 'E'
-         Navigator::EAST
+         EAST
        when direction == 'W'
-         Navigator::WEST
+         WEST
        when direction == 'S'
-         Navigator::SOUTH
-      end 
-  end 
-  
+         SOUTH
+      end
+  end
+
   class North
     def turn_left
-      Navigator::WEST
+      WEST
     end
-    
+
     def turn_right
-      Navigator::EAST
+       EAST
     end
-    
+
     def move(currentPosition)
       x = Integer(currentPosition[0])
       y = Integer(currentPosition[1]) + 1
-    
+
       [x, y]
-    end 
-    
+    end
+
     def to_s
       "N"
     end
   end
-  
+
   class West
     def turn_left
-      Navigator::SOUTH
+      SOUTH
     end
-  
+
     def turn_right
-      Navigator::NORTH
+      NORTH
     end
- 
+
     def move(currentPosition)
       x = Integer(currentPosition[0]) - 1
       y = Integer(currentPosition[1])
-   
+
       [x, y]
     end
-    
+
     def to_s
       "W"
     end
@@ -56,44 +56,48 @@ module Directions
 
   class South
     def turn_left
-      Navigator::EAST
+      EAST
     end
-    
+
     def turn_right
-      Navigator::WEST
+      WEST
     end
-    
+
     def move(currentPosition)
       x = Integer(currentPosition[0])
       y = Integer(currentPosition[1]) - 1
-      
+
       [x, y]
-    end 
-    
+    end
+
     def to_s
       "S"
     end
   end
-  
-  class East 
+
+  class East
     def turn_left
-      Navigator::NORTH
+      NORTH
     end
-    
+
     def turn_right
-      Navigator::SOUTH
+      SOUTH
     end
-    
+
     def move(currentPosition)
       x = Integer(currentPosition[0]) + 1
       y = Integer(currentPosition[1])
-      
+
       [x, y]
     end
-    
+
     def to_s
       "E"
     end
-  end  
-  
+  end
+
+  NORTH = North.new
+  SOUTH = South.new
+  EAST  = East.new
+  WEST  = West.new
 end
