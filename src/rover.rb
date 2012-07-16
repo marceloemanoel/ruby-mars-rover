@@ -24,6 +24,7 @@ class Rover
     @navigator.position
   end
   
-  def receive(command)
+  def to_s
+    "#{position[0]} #{position[1]} #{direction}"
   end
 end            

@@ -1,4 +1,16 @@
 module Directions  
+  def self.from_s(direction)
+     case
+       when direction == 'N'
+         Navigator::NORTH
+       when direction == 'E'
+         Navigator::EAST
+       when direction == 'W'
+         Navigator::WEST
+       when direction == 'S'
+         Navigator::SOUTH
+      end 
+  end 
   
   class North
     def turn_left
@@ -10,11 +22,15 @@ module Directions
     end
     
     def move(currentPosition)
-      x = currentPosition[0]
-      y = currentPosition[1] + 1
+      x = Integer(currentPosition[0])
+      y = Integer(currentPosition[1]) + 1
     
       [x, y]
-    end  
+    end 
+    
+    def to_s
+      "N"
+    end
   end
   
   class West
@@ -27,10 +43,14 @@ module Directions
     end
  
     def move(currentPosition)
-      x = currentPosition[0] - 1
-      y = currentPosition[1]
+      x = Integer(currentPosition[0]) - 1
+      y = Integer(currentPosition[1])
    
       [x, y]
+    end
+    
+    def to_s
+      "W"
     end
   end
 
@@ -44,11 +64,15 @@ module Directions
     end
     
     def move(currentPosition)
-      x = currentPosition[0]
-      y = currentPosition[1] - 1
+      x = Integer(currentPosition[0])
+      y = Integer(currentPosition[1]) - 1
       
       [x, y]
-    end  
+    end 
+    
+    def to_s
+      "S"
+    end
   end
   
   class East 
@@ -61,10 +85,14 @@ module Directions
     end
     
     def move(currentPosition)
-      x = currentPosition[0] + 1
-      y = currentPosition[1]    
+      x = Integer(currentPosition[0]) + 1
+      y = Integer(currentPosition[1])
       
       [x, y]
+    end
+    
+    def to_s
+      "E"
     end
   end  
   

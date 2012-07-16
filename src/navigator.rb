@@ -1,6 +1,7 @@
 require_relative "./directions"
 
 class Navigator
+  include Directions
   
   NORTH = Directions::North.new
   SOUTH = Directions::South.new
