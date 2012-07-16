@@ -1,5 +1,4 @@
-require_relative "../src/rover"
-require_relative "../src/navigator"
+require "spec_helper"
 
 describe Navigator do
   context "standing at position (0,0) facing NORTH" do
