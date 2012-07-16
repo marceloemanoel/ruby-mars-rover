@@ -1,20 +1,20 @@
 class Rover
-  
+
   def initialize(navigator)
-    @navigator = navigator 
+    @navigator = navigator
   end
-  
+
   def turn_left
     @navigator.turn_left
   end
-  
+
   def turn_right
     @navigator.turn_right
   end
-  
+
   def move
     @navigator.move
-  end  
+  end
 
   def direction
     @navigator.direction
@@ -23,8 +23,8 @@ class Rover
   def position
     @navigator.position
   end
-  
+
   def to_s
     "#{position[0]} #{position[1]} #{direction}"
   end
-end            
+end
