@@ -1,36 +1,109 @@
 require "spec_helper"
 
 describe Rover do
-  context "at position (1, 2) facing NORTH receive the command LMLMLMLMM" do
-    before :each do
-      navigator = Navigator.new(Directions::NORTH, [1, 2])
-      @rover = Rover.new(navigator)
-      communicator = Communicator.new(@rover)
-      communicator.receive("LMLMLMLMM")
+  describe "#turn_left" do
+    context "facing NORTH" do
+      it "faces WEST" do
+        @rover = Rover.new(Directions::NORTH)
+        @rover.turn_left
+        @rover.direction.should == Directions::WEST
+      end
     end
 
-    it "stands at location (1, 3)" do
-      @rover.position.should == [1, 3]
+    context "facing WEST" do
+      it "faces SOUTH" do
+        @rover = Rover.new(Directions::WEST)
+        @rover.turn_left
+        @rover.direction.should == Directions::SOUTH
+      end
     end
 
-    it "faces NORTH" do
-      @rover.direction.should == Directions::NORTH
+    context "facing SOUTH" do
+      it "faces EAST" do
+        @rover = Rover.new(Directions::SOUTH)
+        @rover.turn_left
+        @rover.direction.should == Directions::EAST
+      end
+    end
+
+    context "facing EAST" do
+      it "faces NORTH" do
+        @rover = Rover.new(Directions::EAST)
+        @rover.turn_left
+        @rover.direction.should == Directions::NORTH
+      end
     end
   end
 
-  context "at position (3, 3) facing EAST receive the command MMRMMRMRRM" do
-    before :each do
-      navigator = Navigator.new(Directions::EAST, [3, 3])
-      @rover = Rover.new(navigator)
-      communicator = Communicator.new(@rover)
-      communicator.receive("MMRMMRMRRM")
-    end
-    it "stands at location (5, 1)" do
-      @rover.position.should == [5, 1]
+  describe "#turn_right" do
+    context "facing NORTH" do
+      it "faces EAST" do
+        @rover = Rover.new(Directions::NORTH)
+        @rover.turn_right
+        @rover.direction.should == Directions::EAST
+      end
     end
 
-    it "faces EAST" do
-      @rover.direction.should == Directions::EAST
+    context "facing EAST" do
+      it "faces SOUTH" do
+        @rover = Rover.new(Directions::EAST)
+        @rover.turn_right
+        @rover.direction.should == Directions::SOUTH
+      end
+    end
+
+    context "facing SOUTH" do
+      it "faces WEST" do
+        @rover = Rover.new(Directions::SOUTH)
+        @rover.turn_right
+        @rover.direction.should == Directions::WEST
+      end
+    end
+
+    context "facing WEST" do
+      it "faces NORTH" do
+        @rover = Rover.new(Directions::WEST)
+        @rover.turn_right
+        @rover.direction.should == Directions::NORTH
+      end
+    end
+  end
+
+  describe "#move" do
+    context "standing at position (0, 0)" do
+
+      context "facing NORTH" do
+        it "stands at position (0, 1)" do
+          @rover = Rover.new(Directions::NORTH)
+          @rover.move
+          @rover.position.should == [0, 1]
+        end
+      end
+
+      context "facing WEST" do
+        it "stands at position (-1, 0)" do
+          @rover = Rover.new(Directions::WEST)
+          @rover.move
+          @rover.position.should == [-1, 0]
+        end
+      end
+
+      context "facing SOUTH" do
+        it "stands at position (0, -1)" do
+          @rover = Rover.new(Directions::SOUTH)
+          @rover.move
+          @rover.position.should == [0, -1]
+        end
+      end
+
+      context "facing EAST" do
+        it "stands at position (1, 0)" do
+          @rover = Rover.new(Directions::EAST)
+          @rover.move
+          @rover.position.should == [1, 0]
+        end
+      end
+
     end
   end
 end
