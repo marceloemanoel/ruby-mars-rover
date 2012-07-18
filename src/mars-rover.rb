@@ -1,5 +1,5 @@
 require_relative "./rover"
-require_relative "./communicator"
+require_relative "./operator"
 
 plateau = ARGF.gets
 
@@ -9,9 +9,7 @@ while !ARGF.eof
   direction = Directions.from_s(rover_position.split[2])
 
   rover = Rover.new(direction, position)
-  communicator = Communicator.new(rover)
-
-  communicator.receive ARGF.gets
+  Operator.new(rover).receive ARGF.gets
 
   puts rover
 end
