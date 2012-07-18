@@ -1,4 +1,4 @@
-class Communicator
+class Operator
 
   def initialize(rover)
     @rover = rover
