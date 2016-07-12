@@ -7,6 +7,6 @@ end
 
 desc "Executes the ruby mars-rover program with mars-rover.in as input"
 task :execute do
-  sh "ruby src/mars-rover.rb mars-rover.in"
+  sh "ruby src/main.rb input"
 end
 

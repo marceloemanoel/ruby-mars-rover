@@ -1,5 +1,7 @@
-require_relative "../src/operator"
-require_relative "../src/directions"
+require_relative "../src/direction/east"
+require_relative "../src/direction/north"
+require_relative "../src/direction/south"
+require_relative "../src/direction/west"
 require_relative "../src/rover"
 
 RSpec.configure do |config|
